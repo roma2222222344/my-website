@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Шедеври французького живопису — Євтушенко Мелана 11-А</title>
+<style>
+  body { font-family: 'Georgia', serif; background: #f6f3eb radial-gradient(#c59b27 0.7px, transparent 0.7px); background-size: 26px 26px; color: #1c1e21; margin: 0; }
+  header { background: linear-gradient(135deg, #0e1d36, #1d3c70); color: #fff; text-align: center; padding: 50px 20px 30px; border-bottom: 4px solid #c59b27; position: relative; }
+  .author { position: absolute; top: 14px; right: 18px; background: #0e1d36; border: 1.5px solid #c59b27; color: #e5c66b; padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; }
+  .ornament { color: #e5c66b; font-size: 1.3rem; letter-spacing: 8px; margin-bottom: 6px; }
+  h1 { margin: 0; font-size: 2.2rem; }
+  .subtitle { color: #e2e8f0; font-style: italic; margin-top: 8px; }
+  .filters { display: flex; justify-content: center; gap: 10px; margin: 25px 0; flex-wrap: wrap; }
+  .filters button { background: #fff; border: 2px solid #c59b27; color: #14284b; padding: 8px 18px; cursor: pointer; font-family: inherit; font-weight: bold; border-radius: 25px; }
+  .filters button.active, .filters button:hover { background: #14284b; color: #e5c66b; border-color: #14284b; }
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; max-width: 1120px; margin: 0 auto 50px; padding: 0 20px; }
+  .card { background: #fff; border: 2px solid #c59b27; padding: 16px; cursor: pointer; box-shadow: 0 8px 20px rgba(20,40,75,0.12); transition: 0.2s; }
+  .card:hover { transform: translateY(-5px); }
+  .card img { width: 100%; height: 230px; object-fit: cover; display: block; border: 1px solid #d4af37; }
+  .badge { display: inline-block; background: #f6f3eb; color: #14284b; border: 1px solid #c59b27; font-size: 0.75rem; padding: 2px 9px; border-radius: 10px; margin-top: 10px; }
+  .title { font-weight: bold; margin: 8px 0 4px; font-size: 1.1rem; color: #14284b; }
+  .artist { color: #555; font-style: italic; font-size: 0.95rem; margin: 0; }
+  .desc { display: none; }
+  footer { text-align: center; padding: 20px; background: #14284b; color: #e5c66b; border-top: 3px solid #c59b27; font-size: 0.95rem; }
+  .modal { display: none; position: fixed; inset: 0; background: rgba(10,18,32,0.88); justify-content: center; align-items: center; padding: 20px; z-index: 999; }
+  .modal-box { background: #fff; border: 3px solid #c59b27; max-width: 750px; width: 100%; padding: 24px; position: relative; text-align: center; }
+  .modal-box img { max-height: 55vh; max-width: 100%; border: 2px solid #c59b27; }
+  .modal-box h3 { margin: 14px 0 4px; color: #14284b; }
+  .modal-box .m-artist { font-weight: bold; color: #c59b27; margin: 0 0 10px; }
+  .modal-box .m-desc { color: #333; line-height: 1.5; margin: 0; }
+  .close { position: absolute; top: 8px; right: 16px; font-size: 30px; cursor: pointer; color: #14284b; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="author">✦ Євтушенко Мелана • 11-А клас</div>
+  <div class="ornament">⚜ ✦ ⚜</div>
+  <h1>Шедеври французького живопису</h1>
+  <p class="subtitle">Віртуальна експозиція великих майстрів Франції XIX століття</p>
+</header>
+
+<div class="filters">
+  <button class="active" onclick="filter('all', this)">Усі шедеври (6)</button>
+  <button onclick="filter('classic', this)">Класицизм і Романтизм</button>
+  <button onclick="filter('imp', this)">Імпресіонізм</button>
+</div>
+
+<div class="gallery">
+  <div class="card" data-cat="classic" onclick="openM(this)">
+    <img data-n="images (2)" src="images (2).jpg" onerror="ext(this)">
+    <span class="badge">Романтизм</span>
+    <p class="title">Свобода, що веде народ (1830)</p>
+    <p class="artist">Ежен Делакруа</p>
+    <p class="desc">Знаменита картина епохи романтизму, присвячена Липневій революції 1830 року у Франції. Зберігається в Луврі.</p>
+  </div>
+
+  <div class="card" data-cat="imp" onclick="openM(this)">
+    <img data-n="Édouard_Manet_-_Le_Déjeuner_sur_l'herbe" src="Édouard_Manet_-_Le_Déjeuner_sur_l'herbe.jpg" onerror="ext(this)">
+    <span class="badge">Імпресіонізм</span>
+    <p class="title">Сніданок на траві (1863)</p>
+    <p class="artist">Едуар Мане</p>
+    <p class="desc">Новаторське полотно, що кинуло виклик академічним правилам і стало початком імпресіонізму.</p>
+  </div>
+
+  <div class="card" data-cat="imp" onclick="openM(this)">
+    <img data-n="Claude_Monet,_Impression,_soleil_levant" src="Claude_Monet,_Impression,_soleil_levant.jpg" onerror="ext(this)">
+    <span class="badge">Імпресіонізм</span>
+    <p class="title">Враження. Схід сонця (1872)</p>
+    <p class="artist">Клод Моне</p>
+    <p class="desc">Ранковий пейзаж порту Гавр, який подарував назву цілому мистецькому напряму — імпресіонізму.</p>
+  </div>
+
+  <div class="card" data-cat="imp" onclick="openM(this)">
+    <img data-n="images (3)" src="images (3).jpg" onerror="ext(this)">
+    <span class="badge">Імпресіонізм</span>
+    <p class="title">Бал у Мулен де ла Галетт (1876)</p>
+    <p class="artist">П'єр-Огюст Ренуар</p>
+    <p class="desc">Сповнена сонячного світла сцена недільного відпочинку парижан на Монмартрі.</p>
+  </div>
+
+  <div class="card" data-cat="imp" onclick="openM(this)">
+    <img data-n="5" src="5.jpg" onerror="ext(this)">
+    <span class="badge">Імпресіонізм</span>
+    <p class="title">Танцівниці у блакитному (1897)</p>
+    <p class="artist">Едгар Дега</p>
+    <p class="desc">Вишукана пастельна композиція, що передає грацію, рух і гру світла за лаштунками паризької опери.</p>
+  </div>
+
+  <div class="card" data-cat="classic" onclick="openM(this)">
+    <img data-n="images (4)" src="images (4).jpg" onerror="ext(this)">
+    <span class="badge">Класицизм</span>
+    <p class="title">Велика одаліска (1814)</p>
+    <p class="artist">Жан-Огюст-Домінік Енгр</p>
+    <p class="desc">Шедевр французького неокласицизму, відомий витонченою лінією малюнка та бездоганною палітрою.</p>
+  </div>
+</div>
+
+<footer>
+  ⚜ Віртуальна художня галерея • Класичне мистецтво Франції ⚜<br>
+  Виконала: <strong>Євтушенко Мелана, учениця 11-А класу</strong>
+</footer>
+
+<div class="modal" id="m" onclick="if(event.target.id==='m')this.style.display='none'">
+  <div class="modal-box">
+    <span class="close" onclick="document.getElementById('m').style.display='none'">&times;</span>
+    <img id="m-img" src="">
+    <h3 id="m-title"></h3>
+    <p class="m-artist" id="m-artist"></p>
+    <p class="m-desc" id="m-desc"></p>
+  </div>
+</div>
+
+<script>
+  function ext(img) {
+    const e = ['.jfif', '.jpeg', '.png', '.webp'];
+    let s = parseInt(img.dataset.s || '0');
+    if (s < e.length) { img.dataset.s = s + 1; img.src = img.dataset.n + e[s]; }
+  }
+  function filter(cat, btn) {
+    document.querySelectorAll('.filters button').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.querySelectorAll('.card').forEach(c => c.style.display = (cat === 'all' || c.dataset.cat === cat) ? 'block' : 'none');
+  }
+  function openM(c) {
+    document.getElementById('m-img').src = c.querySelector('img').src;
+    document.getElementById('m-title').textContent = c.querySelector('.title').textContent;
+    document.getElementById('m-artist').textContent = c.querySelector('.artist').textContent;
+    document.getElementById('m-desc').textContent = c.querySelector('.desc').textContent;
+    document.getElementById('m').style.display = 'flex';
+  }
+</script>
+</body>
+</html>
